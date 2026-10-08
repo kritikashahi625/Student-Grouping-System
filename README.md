@@ -11,7 +11,7 @@ View all created groups
 Assign students into balanced groups
 
 👨‍🎓 Student Panel
-Login system for students
+Login system for students.
 View assigned group details
 View group members
 Access personal profile information
