@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="dashboard">
+    <h2>Welcome, {{ student[0] }}</h2>
+    <p>Email: {{ student[1] }}</p>
+
+    <div class="group-box">
+        <h3>Your Group</h3>
+
+        {% if group %}
+            <p>Group ID: {{ group[0] }}</p>
+        {% else %}
+            <p>You are not assigned to any group yet.</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>

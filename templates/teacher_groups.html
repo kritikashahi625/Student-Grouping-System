@@ -1,0 +1,9 @@
+<h2>Student Groups</h2>
+{% for group_num, members in groups.items() %}
+    <h3>Group {{ group_num }}</h3>
+    <ul>
+        {% for member in members %}
+            <li>{{ member }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}

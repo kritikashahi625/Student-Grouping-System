@@ -1,0 +1,125 @@
+/* ---------- General Body ---------- */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* ---------- Sidebar ---------- */
+.admin-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #2c3e50;
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .logo h2 {
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+}
+
+.sidebar .nav-links {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar .nav-links li {
+    margin-bottom: 15px;
+}
+
+.sidebar .nav-links li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    padding: 10px 20px;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.sidebar .nav-links li a:hover,
+.sidebar .nav-links li a.active {
+    background-color: #34495e;
+}
+
+/* ---------- Main Content ---------- */
+.main-content {
+    flex: 1;
+    padding: 20px 30px;
+}
+
+/* ---------- Header ---------- */
+.main-content header h1 {
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+}
+
+/* ---------- Cards ---------- */
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card h3 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.card p {
+    font-size: 24px;
+    margin: 10px 0 0 0;
+    color: #34495e;
+}
+
+/* ---------- Quick Actions ---------- */
+.quick-actions {
+    margin-top: 30px;
+}
+
+.quick-actions h2 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.quick-actions a,
+.quick-actions form {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.quick-actions button {
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.quick-actions button:hover {
+    background-color: #34495e;
+}

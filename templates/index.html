@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Grouping System</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body { margin:0; font-family:'Inter', sans-serif; }
+
+/* HERO */
+.hero {
+    text-align:center;
+    padding:220px 20px;
+    background: linear-gradient(135deg, #333357, #2f537e);
+    color:white;
+}
+.hero h1 { font-size:60px; margin-bottom:20px; }
+.hero p {font-size:20px; max-width:600px; margin:auto; line-height:1.6; }
+.btn-primary {
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    background:#FFC107;
+    color:black;
+    border-radius:5px;
+    text-decoration:none;
+    font-weight:600;
+}
+.btn-primary:hover { background:#e0a800; }
+
+/* FEATURES */
+.features-grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap:20px;
+}
+.card {
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+    text-align:center;
+    transition:0.3s;
+}
+.card:hover {
+    transform:translateY(-5px);
+}
+
+/* HOW IT WORKS */
+.steps {
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:20px;
+    text-align:center;
+}
+.step {
+    width:200px;
+}
+
+/* STATS */
+.stats {
+    display:flex;
+    justify-content:space-around;
+    background:#162447;
+    color:white;
+    padding:40px 20px;
+}
+.stat h2 { margin:0; }
+
+/* SECTION */
+.section { padding:80px 20px; }
+
+/* NAVBAR FIX */
+.logo { height:40px; }
+
+
+</style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo">
+        <span class="logo-text">Grouper</span>
+    </div>
+
+    <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="{{ url_for('login') }}" class="btn">Login</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h1 class="hero-title">Smart Student Grouping System</h1>
+    <p class="hero-subtitle">Create balanced and efficient student groups using intelligent algorithms based on skills and performance.</p>
+    <a href="{{ url_for('login') }}" class="btn-primary">Get Started</a>
+</section>
+
+
+
+
+<!-- FEATURES -->
+<section id="features" class="section" style="background:#f4f6f9;">
+    <h2 style="text-align:center; margin-bottom:50px;">Powerful Features</h2>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+            <div class="icon">🤖</div>
+            <h3>AI-Based Grouping</h3>
+            <p>Uses KNN algorithm to intelligently create balanced student groups based on multiple skill parameters.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Skill Analysis</h3>
+            <p>Analyzes communication, leadership, technical and problem-solving skills to optimize team formation.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">👩‍🏫</div>
+            <h3>Teacher Dashboard</h3>
+            <p>Teachers can manage students, monitor data, and generate groups with full control.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">⚡</div>
+            <h3>Instant Group Creation</h3>
+            <p>Generate optimized groups in seconds, reducing manual effort and saving time.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🔐</div>
+            <h3>Secure Login System</h3>
+            <p>Separate login for Admin, Teacher, and Students ensuring role-based access control.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">📁</div>
+            <h3>Data Management</h3>
+            <p>Efficient CRUD operations for students and teachers with organized database storage.</p>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+<!-- HOW IT WORKS -->
+<<section class="section" style="background:white;">
+    <h2 style="text-align:center; margin-bottom:50px;">How It Works</h2>
+
+    <div class="steps-container">
+
+        <div class="step-card">
+            <div class="step-icon">👨‍🎓</div>
+            <h3>1. Add Students</h3>
+            <p>Admin or teacher adds student details including name, email, and skill attributes.</p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">📊</div>
+            <h3>2. Input Skills</h3>
+            <p>Each student is evaluated based on communication, leadership, teamwork, and technical skills.</p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">🤖</div>
+            <h3>3. Generate Groups</h3>
+            <p>The system uses KNN algorithm to automatically create balanced and efficient groups.</p>
+        </div>
+
+        <div class="step-card">
+            <div class="step-icon">👥</div>
+            <h3>4. View & Manage</h3>
+            <p>Teachers and students can view assigned groups and manage collaboration effectively.</p>
+        </div>
+
+    </div>
+</section>
+<!-- ABOUT -->
+<!-- About Section -->
+<section id="about" class="about-section">
+    <div class="container about-container">
+        <div class="about-text">
+            <h2>About Grouper</h2>
+            <p>
+                Grouper is designed to help educators and students form efficient project groups effortlessly. 
+                Using advanced AI algorithms, we analyze student data to create balanced teams, enhancing 
+                collaboration, productivity, and learning outcomes.
+            </p>
+        
+</section>
+
+<!-- CTA -->
+<section style="text-align:center; padding:60px;">
+    <h2>Ready to simplify group projects?</h2>
+    <a href="{{ url_for('login') }}" class="btn-primary">Start Now</a>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#2F4156; color:white; padding:40px; text-align:center;">
+    <p>&copy; 2026 Grouper. All Rights Reserved.</p>
+    <p>Email: support@grouper.com</p>
+</footer>
+
+</body>
+</html>

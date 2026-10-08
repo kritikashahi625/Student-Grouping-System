@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Student Grouping System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admindashboard.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="admin-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>Grouper</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('admin_dashboard') }}" class="active">Dashboard</a></li>
+
+            <li><a href="{{ url_for('students') }}">Students</a></li>
+
+            
+            <li><a href="{{ url_for('teachers') }}">Teachers</a></li>
+
+
+            <li><a href="#" id="generate-groups-link">Generate Groups</a></li>
+                    
+
+            <li><a href="{{ url_for('view_groups') }}">View Groups</a></li>
+
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Settings</a></li>
+
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header>
+            <h1>Dashboard</h1>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total Students</h3>
+                <p>{{ total_students }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Teachers</h3>
+                <p>{{ total_teachers }}</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Groups</h3>
+                <p>{{ total_groups }}</p>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <h2>Quick Actions</h2>
+
+            <div class="buttons">
+                <a href="{{ url_for('students') }}">
+                    <button>Add / View Students</button>
+                </a>
+
+               
+                <a href="{{ url_for('teachers') }}">
+                    <button>Add / View Teachers</button>
+                </a>
+
+                <form method="POST" action="{{ url_for('generate_groups') }}">
+                    <button type="submit">Generate Groups</button>
+                    
+                </form>
+                
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>
+<script>
+document.getElementById('generate-groups-link').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    fetch('{{ url_for("generate_groups") }}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: '' // no data needed
+    })
+    .then(response => {
+        // if the server redirected, follow the redirect
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else {
+            alert('Groups generated, but no redirect!'); // fallback
+        }
+    })
+    .catch(err => console.error(err));
+});
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students - Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/students.css') }}">
+</head>
+<body>
+
+<h1>Students</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>
+        <form action="{{ url_for('delete_student', id=student.id) }}" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+        </form>
+    </td>
+</form>
+    </tr>
+    {% endfor %}
+</table>
+
+<form method="POST" action="{{ url_for('add_student') }}" style="max-width:800px; margin:auto; padding:20px; border:1px solid #ccc; border-radius:10px; background:#f9f9f9;">
+    <h2>Add Student</h2>
+    <input type="text" name="name" placeholder="Name" required style="width:90%; padding:12px; margin-bottom:10px;">
+    <input type="email" name="email" placeholder="Email" required style="width:90%; padding:12px; margin-bottom:10px;">
+    <input type="password" name="password" placeholder="Password" required style="width:90%; padding:12px; margin-bottom:10px;">
+
+    <h3>Skills (0–10)</h3>
+    <input type="number" name="Communication_Skills" placeholder="Communication" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Leadership" placeholder="Leadership" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Technical_Skill" placeholder="Technical" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Teamwork" placeholder="Teamwork" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Problem_Solving_Skill" placeholder="Problem Solving" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Creativity_Skill" placeholder="Creativity" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Adaptability_Skill" placeholder="Adaptability" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+    <input type="number" name="Attendance" placeholder="Attendance" min="0" max="10" style="width:48%; padding:10px; margin:5px 1%;">
+
+    <button type="submit" style="width:100%; padding:15px; background:#162447; color:white; font-size:16px; border:none; border-radius:5px; cursor:pointer;">Add Student</button>
+</form>
+
+
+
+</body>
+</html>

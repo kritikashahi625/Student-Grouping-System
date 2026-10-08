@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-style.css') }}">
+
+</head>
+<body>
+<div class="admin-container">
+    <aside class="sidebar">
+        <h2>Grouper</h2>
+        <ul class="nav-links">
+            <li><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('students') }}">Students</a></li>
+            <li><a href="{{ url_for('teachers') }}">Teachers</a></li>
+            <li><a href="{{ url_for('generate_groups') }}">Generate Groups</a></li>
+            <li><a href="{{ url_for('groups') }}">View Groups</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+        </ul>
+    </aside>
+    <main class="main-content">
+        <h1>Dashboard</h1>
+        <div class="cards">
+            <div class="card"><h3>Total Students</h3><p>{{ total_students }}</p></div>
+            <div class="card"><h3>Total Teachers</h3><p>{{ total_teachers }}</p></div>
+            <div class="card"><h3>Total Groups</h3><p>{{ total_groups }}</p></div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.generate-btn {
+    display: block;
+    margin: 10px auto 30px auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    background-color: #45a049;
+}
+
+.groups-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.group-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.group-card h3 {
+    text-align: center;
+    color: #555;
+}
+
+.group-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.group-card li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}

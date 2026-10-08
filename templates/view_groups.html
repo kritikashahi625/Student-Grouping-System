@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Generated Groups</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admindashboard.css') }}">
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { text-align: center; margin-bottom: 30px; }
+
+    .groups-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .group-card {
+        border: 2px solid #1b1b2f;
+        border-radius: 10px;
+        padding: 20px;
+        width: 220px;
+        background: #f7f7f7;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+
+    .group-card:hover {
+        transform: scale(1.05);
+    }
+
+    .group-card h3 {
+        text-align: center;
+        color: #1b1b2f;
+        margin-bottom: 15px;
+    }
+
+    .group-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .group-card ul li {
+        padding: 5px 0;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .group-card ul li:last-child {
+        border-bottom: none;
+    }
+
+    .back-button {
+        display: block;
+        margin: 40px auto 0;
+        padding: 10px 20px;
+        background: #1b1b2f;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        width: 150px;
+    }
+
+    .back-button:hover {
+        background: #162447;
+    }
+</style>
+</head>
+<body>
+<h1>Generated Groups</h1>
+
+{% if groups %}
+<div class="groups-container">
+    {% for group_number, members in groups.items() %}
+        <div class="group-card">
+            <h3>Group {{ group_number }}</h3>
+            <ul>
+                {% for member in members %}
+                    <li>{{ member }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p style="text-align:center;">No students to generate groups.</p>
+{% endif %}
+
+<a href="{{ url_for('admin_dashboard') }}" class="back-button">Back to Dashboard</a>
+</body>
+</html>

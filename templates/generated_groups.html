@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Groups</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admindashboard.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+        h1 { text-align: center; margin-bottom: 30px; }
+        .group-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .group-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            padding: 20px;
+            min-width: 200px;
+            text-align: center;
+        }
+        .group-card h3 { margin-bottom: 10px; color: #333; }
+        .group-card ul { list-style: none; padding: 0; }
+        .group-card ul li {
+            background: #e0e0e0;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        a.back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #fff;
+            background: #162447;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        a.back-btn:hover { background: #1f4068; }
+    </style>
+</head>
+<body>
+
+<h1>Generated Groups</h1>
+
+{% if groups %}
+    <div class="group-container">
+        {% for group_number, members in groups.items() %}
+            <div class="group-card">
+                <h3>Group {{ group_number }}</h3>
+                <ul>
+                    {% for member in members %}
+                        <li>{{ member }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No students to generate groups.</p>
+{% endif %}
+
+<a href="{{ url_for('admin_dashboard') }}" class="back-btn">Back to Dashboard</a>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teachers - Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/teachers.css') }}">
+</head>
+<body>
+
+<h1>Teachers</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    {% for teacher in teachers %}
+    <tr>
+        <td>{{ teacher.id }}</td>
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.email }}</td>
+        <td>
+            <a href="{{ url_for('delete_teacher', id=teacher.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form method="POST" action="{{ url_for('add_teacher') }}" 
+      style="max-width:500px; margin:auto; padding:20px; border:1px solid #ccc; border-radius:10px; background:#f9f9f9;">
+    <h2>Add Teacher</h2>
+
+    <input type="text" name="name" placeholder="Name" required 
+           style="width:90%; padding:12px; margin-bottom:10px;">
+    <input type="email" name="email" placeholder="Email" required 
+           style="width:90%; padding:12px; margin-bottom:10px;">
+    <input type="password" name="password" placeholder="Password" required 
+           style="width:90%; padding:12px; margin-bottom:20px;">
+
+    <button type="submit" 
+            style="width:95%; padding:15px; background:#162447; color:white; font-size:16px; border:none; border-radius:5px; cursor:pointer;">
+        Add Teacher
+    </button>
+</form>
+
+</body>
+</html>

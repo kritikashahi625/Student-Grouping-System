@@ -1,0 +1,33 @@
+CREATE DATABASE studentgrouper;
+USE studentgrouper;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    Communication_Skills FLOAT,
+    Leadership FLOAT,
+    Technical_Skill FLOAT,
+    Teamwork FLOAT,
+    Problem_Solving_Skill FLOAT,
+    Creativity_Skill FLOAT,
+    Adaptability_Skill FLOAT,
+    Attendance FLOAT,
+    cluster INT
+);
+
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'teacher', 'student') NOT NULL
+);
+

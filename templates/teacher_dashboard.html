@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teacher Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f9; }
+        /* Sidebar */
+        .sidebar { width: 220px; background: #1b1b2f; color: white; float: left; min-height: 100vh; padding-top: 20px; }
+        .sidebar h2 { text-align: center; margin-bottom: 30px; font-size: 20px; }
+        .sidebar ul { list-style: none; padding: 0; }
+        .sidebar ul li { padding: 15px; cursor: pointer; transition: 0.3s; }
+        .sidebar ul li:hover { background: #162447; }
+
+        /* Main content */
+        .main { margin-left: 220px; padding: 20px; }
+        h2 { margin-top: 0; }
+
+        /* Quick Actions */
+        .quick-actions { background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .quick-actions h3 { margin-top: 0; }
+        .quick-actions button { padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; background: #162447; color: white; cursor: pointer; transition: 0.3s; }
+        .quick-actions button:hover { background: #1b263b; }
+
+        /* Tables */
+        table { border-collapse: collapse; width: 100%; background: #fff; margin-bottom: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: #162447; color: white; }
+
+        /* Forms */
+        form input, form button { padding: 8px; margin: 5px 0; border-radius: 5px; border: 1px solid #ccc; }
+        form button { background: #162447; color: white; border: none; cursor: pointer; }
+        form button:hover { background: #1b263b; }
+
+        /* Groups */
+        .group-card { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; background: #fff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .group-card ul { padding-left: 20px; text-align: left; }
+
+        /* Section toggle */
+        .section { display: none; }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>{{ teacher_name }}</h2>
+        <ul>
+            <li onclick="showSection('students')">Dashboard</li>
+            <li onclick="showSection('students')">View/Add Students</li>
+            <li onclick="showSection('groups')">Groups</li>
+            <li onclick="window.location.href='{{ url_for('logout') }}'">Logout</li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <button onclick="showSection('addStudent')">Add Student</button>
+            <button onclick="showSection('viewStudents')">View Students</button>
+            <form method="POST" action="{{ url_for('teacher_generate_groups') }}" style="display:inline;">
+                <button type="submit">Generate Groups</button>
+            </form>
+        </div>
+
+       <!-- Add Student Section -->
+<div id="addStudent" class="section">
+    <h2>Add Student</h2>
+    <div class="form-card">
+        <form method="POST" action="{{ url_for('teacher_add_student') }}">
+            <div class="form-row">
+                <label>Name:</label>
+                <input type="text" name="name" placeholder="Full Name" required>
+            </div>
+            <div class="form-row">
+                <label>Email:</label>
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-row">
+                <label>Communication:</label>
+                <input type="number" name="Communication_Skills" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Leadership:</label>
+                <input type="number" name="Leadership" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Technical:</label>
+                <input type="number" name="Technical_Skill" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Teamwork:</label>
+                <input type="number" name="Teamwork" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Problem Solving:</label>
+                <input type="number" name="Problem_Solving_Skill" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Creativity:</label>
+                <input type="number" name="Creativity_Skill" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Adaptability:</label>
+                <input type="number" name="Adaptability_Skill" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <label>Attendance:</label>
+                <input type="number" name="Attendance" min="0" max="10">
+            </div>
+            <div class="form-row">
+                <button type="submit">Add Student</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Admin-style Add Student Form */
+.form-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+.form-card .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+.form-card label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.form-card input {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+.form-card button {
+    padding: 10px 20px;
+    background: #162447;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+.form-card button:hover {
+    background: #1b263b;
+}
+</style>
+
+        <!-- Student Table -->
+<div id="viewStudents" class="section">
+    <h2>Students List</h2>
+    <table class="student-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Communication</th>
+                <th>Leadership</th>
+                <th>Technical</th>
+                <th>Teamwork</th>
+                <th>Problem Solving</th>
+                <th>Creativity</th>
+                <th>Adaptability</th>
+                <th>Attendance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.Communication_Skills }}</td>
+                <td>{{ student.Leadership }}</td>
+                <td>{{ student.Technical_Skill }}</td>
+                <td>{{ student.Teamwork }}</td>
+                <td>{{ student.Problem_Solving_Skill }}</td>
+                <td>{{ student.Creativity_Skill }}</td>
+                <td>{{ student.Adaptability_Skill }}</td>
+                <td>{{ student.Attendance }}</td>
+                <td>
+                    <a href="{{ url_for('teacher_delete_student', id=student.id) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<style>
+/* Table styling like admin */
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+.student-table th, .student-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.student-table th {
+    background-color: #162447;
+    color: #fff;
+}
+.student-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.student-table a {
+    color: #162447;
+    text-decoration: none;
+    font-weight: bold;
+}
+.student-table a:hover {
+    text-decoration: underline;
+}
+</style>
+        <!-- Groups Section -->
+        <div id="groups" class="section">
+            <h2>Groups</h2>
+            {% if groups %}
+                {% for gnum, members in groups.items() %}
+                <div class="group-card">
+                    <strong>Group {{ gnum }}</strong>
+                    <ul>
+                        {% for m in members %}
+                        <li>{{ m }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No groups yet.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function showSection(id) {
+            const sections = ['addStudent', 'viewStudents', 'groups'];
+            sections.forEach(s => document.getElementById(s).style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+        // default section
+        showSection('viewStudents');
+    </script>
+
+    <!-- Generate Groups Section -->
+<div id="generateGroups" class="section">
+    <h2>Generate Groups</h2>
+    <form method="POST" action="{{ url_for('teacher_generate_groups') }}">
+        <button type="submit" class="generate-btn">Generate Groups</button>
+    </form>
+
+    {% if groups %}
+        <div class="groups-container">
+            {% for gnum, members in groups.items() %}
+            <div class="group-card">
+                <strong>Group {{ gnum }}</strong>
+                <ul>
+                    {% for m in members %}
+                    <li>{{ m }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No groups yet.</p>
+    {% endif %}
+</div>
+
+<style>
+.generate-btn {
+    background-color: #162447;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.generate-btn:hover {
+    background-color: #1b1b2f;
+}
+
+/* Group cards */
+.groups-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.group-card {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    margin: 10px;
+    min-width: 150px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.group-card ul {
+    padding-left: 20px;
+}
+.group-card strong {
+    display: block;
+    margin-bottom: 5px;
+}
+</style>
+</body>
+</html>

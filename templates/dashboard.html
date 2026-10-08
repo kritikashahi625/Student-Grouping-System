@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grouping Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="logo">StudentGrouper</div>
+    <div class="user">Logout</div>
+</header>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <a class="active">Dashboard</a>
+        <a>Student Grouping</a>
+        <a>Students</a>
+    </aside>
+
+    <main class="content">
+        <h2>Student Grouping</h2>
+
+        <div class="card">
+            <h3>Add Student</h3>
+            <input type="text" id="studentName" placeholder="Student Name">                
+            <input type="number" id="Communication_Skills" placeholder="Communication (1-10)">
+            <input type="number" id="Leadership" placeholder="Leadership (1-10)">
+            <input type="number" id="Technical_Skill" placeholder="Technical Skill (1-10)">
+            <input type="number" id="Teamwork" placeholder="Teamwork (1-10)">
+            <input type="number" id="Problem_Solving_Skill" placeholder="Problem Solving (1-10)">
+            <input type="number" id="Creativity_Skill" placeholder="Creativity (1-10)">
+            <input type="number" id="Adaptability_Skill" placeholder="Adaptability (1-10)">
+            <input type="number" id="Attendance" placeholder="Attendance (0-100)">
+
+            <button type="button" onclick="addStudentAndGenerateGroup()">Add Student & Generate Groups</button>
+        </div>
+
+        <div class="groups-container">
+            <h3>Generated Groups</h3>
+            <div class="groups" id="groupsDisplay">
+                </div>
+        </div>
+
+    </main>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
